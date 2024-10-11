@@ -1,3 +1,14 @@
+/*
+1. FONTS
+2. GENERAL
+3. ANIMATIONS
+4. NAVIGATION
+5. INFO
+6. FOOD CATEGORY
+7. FOOD ITEM TITLE
+8. FOOD ITEM DETAIL
+*/
+
 
 /* --- FONTS --- */
 
@@ -8,18 +19,13 @@
     --ColorGrey: #e0e0e0;
     --ColorBlue: #5072A7;
     --ColorMediumGrey: #b0b0b0;
-    --ColorDarkBlue: #385075;
     --ColorDarkGrey: #808080;
     --ColorLightGrey: #F1F1F1;
-    --ColorLightBlue: #bceffc;
-    --ColorYonderBlue: #5072A7;
-    --ColorDustyBlue: #8098bd;
+    --ColorPastelYellow: #ffee8c;
     --FontLight: 'Light', Arial, Helvetica, sans-serif;
     --FontMedium: 'Medium', Arial, Helvetica, sans-serif;
     --FontRegular: 'Regular', Arial, Helvetica, sans-serif;
-    --FontSizeBig: '21px';
     --FontMediumWeight: 500;
-    --FontBoldWeight: 600;
     --MaxWidth: 510px;
   }
   
@@ -49,23 +55,31 @@
  /* --- GENERAL --- */ 
 
 body {
+  height: 100vh;
   max-width: var(--MaxWidth);
   margin: 0 auto auto auto;
   font-family: var(--FontMedium);
   font-size: 14px;
   color: var(--ColorBlack);
-  background-color: var(--ColorBeige);
+  background-color: var(--ColorPastelYellow);
+}
+
+.Logo {
+  float: right;
+  height: 42px;
+  width: 42px;
 }
 
 article {
   clear: both;
   min-height: 100%;
+  padding: 0 10px 0 10px;
   overflow-y: auto;
   z-index: 2;
 }
 
 p {
-  font-family: Light;
+  font-family: var(--FontLight);
 }
   
 a {
@@ -100,32 +114,6 @@ h2 {
 
 li {
   list-style-position: inside; 
-}
-
-/* --- NAVIGATION --- */
-
-nav {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  max-width: var(--MaxWidth);
-  z-index: 1000;
-}
-
-.NavContainer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 30px;
-  width: 100%;
-  max-width: var(--MaxWidth);
-  background-color: var(--ColorBeige);
-  border-top: 1px solid var(--ColorLightGrey);
-}
-
-.NavBox {
-  width: 33%;
-  text-align: center;
 }
 
 /* --- ANIMATIONS --- */
@@ -177,6 +165,31 @@ nav {
   }
 }
 
+/* --- NAVIGATION --- */
+
+nav {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  max-width: var(--MaxWidth);
+  z-index: 1000;
+}
+
+.NavContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 30px;
+  width: 100%;
+  max-width: var(--MaxWidth);
+  background-color: var(--ColorBeige);
+  border-top: 1px solid var(--ColorLightGrey);
+}
+
+.NavBox {
+  width: 33%;
+  text-align: center;
+}
 
 /* --- INFO --- */
 
@@ -185,14 +198,18 @@ nav {
 }
 
 .InfoBox {
-
+  margin-top: 20px;
+  background-color: var(--ColorBeige);
+  border: 1px solid var(--ColorMediumGrey);
+  border-radius: 10px;
+  animation: SlideUp 0.7s ease forwards;
 }
 
 .InfoTitle {
   font-family: 'Medium';
   font-size: 16px;
   line-height: 1.1;
-  margin-bottom: -10px;
+  margin-bottom: -15px;
   padding: 0 10px 0 10px;
   animation: SlideDown 0.7s ease forwards;
 }
@@ -200,8 +217,15 @@ nav {
 .InfoText {
   padding-top: 0;
   padding: 0 10px 0 10px;
-  animation: SlideUp 0.7s ease forwards;
-}  
+  padding: 10px;
+} 
+
+.InfoIcon {
+  float: right;
+  height: 28px;
+  width: 28px;
+  padding: 12px 10px 10px 10px;
+}
 
 /* --- FOOD CATEGORY --- */
 
@@ -227,7 +251,7 @@ nav {
   padding: 10px 20px 0px 20px;
   font-family: 'Regular';
   font-size: 14px;
-  background-color: var(--ColorLightGrey);
+  background-color: var(--ColorBeige);
   border: 1px solid var(--ColorMediumGrey);
   border-radius: 5px;
   animation: Rise 0.7s ease-in-out forwards;
@@ -308,7 +332,7 @@ nav {
   padding-bottom: 15px;
 }
 
-/* --- ITEM DETAIL --- */
+/* --- FOOD ITEM DETAIL --- */
     
 #ItemContainerBottom {
   height: 190px;
