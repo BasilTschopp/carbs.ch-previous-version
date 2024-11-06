@@ -1,63 +1,56 @@
 $(document).ready(function() {
 
-    $('#SliderSize, #SliderFactor').change(function() {
+    $('#slider-size, #slider-factor').change(function() {
 
-        var ItemID = $("#ItemID").text();
-        var Size   = $('#SliderSize').val();
-        var Factor = $('#SliderFactor').val();
+        var ItemID = $("#item-id").text();
+        var Size   = $('#slider-size').val();
+        var Factor = $('#slider-factor').val();
+
+        console.log('Change Item ' + ItemID);
 
         CalcItem(ItemID, Size, Factor);
     });
 
-    $('#SliderBolus').change(function() {
+    $('#slider-bolus').change(function() {
 
-        var ItemID = $("#ItemID").text();
-        var Carbs  = $("#ItemCarbs").text();
-        var Factor = $('#SliderFactor').val();
-        var Bolus  = $('#SliderBolus').val();
+        var ItemID = $("#item-id").text();
+        var Carbs  = $("#item-carbs").text();
+        var Factor = $('#slider-factor').val();
+        var Bolus  = $('#slider-bolus').val();
         var Size   = ((Bolus * 10) / (Carbs / 100 * Factor)).toFixed(0);
 
         CalcItem(ItemID, Size, Factor);
     });
 
-    $('#SliderSize').on('input', function() {
-        UpdateLabel('#SliderValueSize', $(this).val());
+    $('#slider-size').on('input', function() {
+        UpdateLabel('#slider-value-size', $(this).val());
     });
 
-    $('#SliderFactor').on('input', function() {
-        UpdateLabel('#SliderValueFactor', $(this).val());
+    $('#slider-factor').on('input', function() {
+        UpdateLabel('#slider-value-factor', $(this).val());
     });
 
-    $('#SliderBolus').on('input', function() {
-        UpdateLabel('#SliderValueBolus', $(this).val());
+    $('#slider-bolus').on('input', function() {
+        UpdateLabel('#slider-value-bolus', $(this).val());
     });
 });
 
-function SearchItems() {
-
-  ClosePreviosItem();
-
-  var SearchText = $('#ItemSearchInput').val().toLowerCase();
-
-  $('.ItemSelection').each(function(){
-    var ItemTitle = $(this).text().toLowerCase();
-    ItemTitle.includes(SearchText) ? $(this).show(): $(this).hide();
-  });
-}
-
 function ClosePreviosItem() {
-  if ($('#ItemTitlesContainer').find(".Open").length) {
-    $('.ItemSelection').removeClass('Open');
-    $('.ItemSelection').removeClass('MediumFont');
-    $('.ItemSelection .ItemIcon[src*="down.svg"]').attr('src', '../icons/right.svg');
+  if ($('#item-titles-container').find(".Open").length) {
+    $('.item-selection').removeClass('Open');
+    $('.item-selection').removeClass('MediumFont');
+    $('.item-selection .ItemIcon[src*="down.svg"]').attr('src', '../icons/right.svg');
   } 
-  $('#ItemContainer').css("display", "none");
+  $('#item-container').css("display", "none");
 }
 
-function OpenItem(ItemID) {
+function openItem(ItemID) {
 
-  var SelectionID = '#Selection' + ItemID;
-  var FactorValue = $("#SliderFactor").val();
+  var SelectionID = '#selection-id-' + ItemID;
+  var FactorValue = $("#slider-factor").val();
+  var ItemContainer = '#item-container';
+
+  console.log('Open ' + SelectionID);
 
   ClosePreviosItem();
   ScrollToTop(SelectionID);
@@ -67,23 +60,23 @@ function OpenItem(ItemID) {
   $(SelectionID).addClass('Open');
   $(SelectionID).find(".ItemIcon").attr("src", "../icons/down.svg");
 
-  $('#ItemContainer').css("display", "block");
-  $('#SliderSize').val(100);
+  $(ItemContainer).css("display", "block");
+  $('#slider-size').val(100);
 
   GetItemData(ItemID, function(ItemData) {
 
     var ItemCarbs = ItemData.Carbs;
     var Servings  = ItemData.ServingIDs;
 
-    $('#ItemID').text(ItemID);
-    $('#ItemCarbs').text(ItemCarbs);
-    $("#ItemBoxThird").empty();
+    $('#item-id').text(ItemID);
+    $('#item-carbs').text(ItemCarbs);
+    $("#item-box-third").empty();
 
     CalcItem(ItemID, 100, FactorValue);
 
     if (Servings) {
 
-      $("#ItemBoxThird").append("<p class='NutritionalValuesTitle'>Berechne</p>");
+      $("#item-box-third").append("<p class='NutritionalValuesTitle'>Berechne</p>");
 
       GetServingData(ItemID, function(ServingData) {
 
@@ -97,7 +90,7 @@ function OpenItem(ItemID) {
         ServingLink     += ServingName;
         ServingLink     += "</p>";
 
-        $("#ItemBoxThird").append(ServingLink);
+        $("#item-box-third").append(ServingLink);
 
       });
     }
@@ -105,6 +98,8 @@ function OpenItem(ItemID) {
 }
 
 function CalcItem(ItemID, Size, Factor) {
+
+  console.log('CalcItem ' + ItemID)
 
   GetItemData(ItemID, function(ItemData) {
 
@@ -118,21 +113,21 @@ function CalcItem(ItemID, Size, Factor) {
     var CalcFibers    = (Size / 100 * ItemFibers).toFixed(0);
     var CalcFat       = (Size / 100 * ItemFat).toFixed(0);
     var OutputUnits   = 'g/' + Size + Unit;
-    var SliderFactor  = $("#SliderFactor").val();
+    var SliderFactor  = $("#slider-factor").val();
     var CalcBolus     = CalcCarbs / 10 * SliderFactor;
     var RoundedBolus  = Math.round(CalcBolus * 10) / 10;
 
-    $("#ItemBoxSecond").empty();
-    $("#ItemBoxSecond").append("<p class='PaddingTopSmall'>" + CalcCarbs + OutputUnits + "</p>");
-    $("#ItemBoxSecond").append("<p>" + CalcSugar + OutputUnits + "</p>");
-    $("#ItemBoxSecond").append("<p>" + CalcFibers + OutputUnits + "</p>");
-    $("#ItemBoxSecond").append("<p>" + CalcFat + OutputUnits + "</p>");
+    $("#item-box-second").empty();
+    $("#item-box-second").append("<p class='PaddingTopSmall'>" + CalcCarbs + OutputUnits + "</p>");
+    $("#item-box-second").append("<p>" + CalcSugar + OutputUnits + "</p>");
+    $("#item-box-second").append("<p>" + CalcFibers + OutputUnits + "</p>");
+    $("#item-box-second").append("<p>" + CalcFat + OutputUnits + "</p>");
 
-    $('#SliderSize').val(Size);
-    $('#SliderBolus').val(RoundedBolus);
+    $('#slider-size').val(Size);
+    $('#slider-bolus').val(RoundedBolus);
 
-    UpdateLabel('#SliderValueSize', Size);
-    UpdateLabel('#SliderValueBolus', RoundedBolus);
+    UpdateLabel('#slider-value-size', Size);
+    UpdateLabel('#slider-value-bolus', RoundedBolus);
 
   });
 }

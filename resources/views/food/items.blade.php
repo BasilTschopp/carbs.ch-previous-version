@@ -1,86 +1,73 @@
 @include('includes.header')
 
-<div class='ItemCategoryContainer'>
-    <p class='ItemCategoryTitle'> {{ $CategoryName }} </p>
+<!-- loop to create item titles -->
+<div id='item-titles-container'>
 
-    <a href="{{ url('getCategories') }}">
-        <img src="{{ asset('icons/back.svg')}}" class='ItemBackButton' alt='Back'>
-    </a>
+     @foreach($Items as $Item)
+
+        <div id='selection-id-{{ $Item->id }}' class='item-selection' onclick='openItem({{ $Item->id }})'>
+        <img src="{{ asset('icons/right.svg')}}" class='item-icon' title='Open' alt='Item'>
+        <div class='item-name'>{{ $Item->ItemName }}</div>
+        <div class='item-count-servings'>{{ $Item->ServingCount }}</div>
+        </div>
+
+    @endforeach
 
 </div>
 
-<article>
+<!-- single item container that is moved under the corresponding title -->
+<div id='item-container'>
 
-    <!-- Loop to create item titles -->
-    <div id='ItemTitlesContainer'>
+    <!-- helper fields for the calculation with javascript -->
+    <div id='item-id' style='display: none;'></div>
+    <div id='item-carbs' style='display: none;'></div>
 
-        @foreach($Items as $Item)
+    <!-- upper output area -->
+    <div id='item-container-top'>
 
-            <div id='Selection{{ $Item->id }}' class='ItemSelection' onclick='OpenItem({{ $Item->id }})'>
-            <img src="{{ asset('icons/right.svg')}}" class='ItemIcon' title='Open' alt='Item'>
-            <div class='ItemName'>{{ $Item->ItemName }}</div>
-            <div class='ItemCountServings'>{{ $Item->ServingCount }}</div>
-            </div>
+        <div id='item-box-first'>
+            <p class='NutritionalValuesTitle'>Nährwerte</p>
+            <p>Kohlenhydrate</p>
+            <p>davon Zucker</p>
+            <p>Nahrungsfasern</p>
+            <p>Fettgehalt</p>
+        </div>
 
-        @endforeach
+        <div id='item-box-second'></div>
+        <div id='item-box-third'></div>
 
     </div>
 
-   <!-- Single item container that is moved under the corresponding title -->
-   <div id='ItemContainer'>
-
-        <!-- Helper fields for the calculation with Javascript -->
-        <div id='ItemID' style='display: none;'></div>
-        <div id='ItemCarbs' style='display: none;'></div>
-
-        <!-- Upper Output Area -->
-        <div id='ItemContainerTop'>
-
-            <div id='ItemBoxFirst'>
-                <p class='NutritionalValuesTitle'>Nährwerte</p>
-                <p>Kohlenhydrate</p>
-                <p>davon Zucker</p>
-                <p>Nahrungsfasern</p>
-                <p>Fettgehalt</p>
-            </div>
-
-            <div id='ItemBoxSecond'></div>
-            <div id='ItemBoxThird'></div>
-
+    <!-- lower slider area -->
+    <div id='item-container-bottom'>
+        <!-- size number -->
+        <div class='slider-container-left'>
+            <p class='slider-title'>Menge</p>
+            <p id='slider-value-size' class='slider-value'>100</p>
         </div>
-
-        <!-- Lower Slider Area -->
-        <div id='ItemContainerBottom'>
-            <!-- Size Number -->
-            <div class='SliderContainerLeft'>
-                <p class='SliderTitle'>Menge</p>
-                <p id='SliderValueSize' class='SliderValue'>100</p>
-            </div>
-            <!-- Size Slider -->
-            <div class='SliderContainerRight'>
-                <input type='range' id='SliderSize' class='Slider' min='0' max='500' step='5' value='1'>
-            </div>
-            <!-- Factor Number -->
-            <div class='SliderContainerLeft'>
-                <p class='SliderTitle'>Faktor</p>
-                <p id='SliderValueFactor' class='SliderValue'>1</p>
-            </div>
-            <!-- Factor Slider -->
-            <div class='SliderContainerRight'>
-                <input type='range' id='SliderFactor' class='Slider' min='0.1' max='5' step='0.1' value='1'>
-            </div>
-            <!-- Bolus Number -->
-            <div class='SliderContainerLeft'>
-                <p class='SliderTitle'>Bolus</p>
-                <p id='SliderValueBolus' class='SliderValue'></p>
-            </div>
-            <!-- Bolus Slider -->
-            <div class='SliderContainerRight'>
-                <input type='range' id='SliderBolus' class='Slider' min='0' max='20' step='0.1' value='1'>
-            </div>
+        <!-- size slider -->
+        <div class='slider-container-right'>
+            <input type='range' id='slider-size' class='slider' min='0' max='500' step='5' value='1'>
         </div>
+        <!-- factor number -->
+        <div class='slider-container-left'>
+            <p class='slider-title'>Faktor</p>
+            <p id='slider-value-factor' class='slider-value'>1</p>
+        </div>
+        <!-- factor slider -->
+        <div class='slider-container-right'>
+            <input type='range' id='slider-factor' class='slider' min='0.1' max='5' step='0.1' value='1'>
+        </div>
+        <!-- bolus number -->
+        <div class='slider-container-left'>
+            <p class='slider-title'>Bolus</p>
+            <p id='slider-value-bolus' class='slider-value'></p>
+        </div>
+        <!-- bolus slider -->
+        <div class='slider-container-right'>
+            <input type='range' id='slider-bolus' class='slider' min='0' max='20' step='0.1' value='1'>
+        </div>
+    </div>
 </div>
-
-</article>
 
 @include('includes.footer')

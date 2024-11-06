@@ -13,20 +13,21 @@
 /* --- FONTS --- */
 
 :root {
-    --ColorBlack: #222831;
-    --ColorWhite: #FFFFFF;
-    --ColorBeige: #fafafa;
-    --ColorGrey: #e0e0e0;
-    --ColorBlue: #5072A7;
-    --ColorMediumGrey: #b0b0b0;
-    --ColorDarkGrey: #808080;
-    --ColorLightGrey: #F1F1F1;
-    --ColorPastelYellow: #ffee8c;
-    --FontLight: 'Light', Arial, Helvetica, sans-serif;
-    --FontMedium: 'Medium', Arial, Helvetica, sans-serif;
-    --FontRegular: 'Regular', Arial, Helvetica, sans-serif;
-    --FontMediumWeight: 500;
-    --MaxWidth: 510px;
+    --colorBlack: #222831;
+    --colorWhite: #FFFFFF;
+    --colorBeige: #fafafa;
+    --colorGrey: #e0e0e0;
+    --colorBlue: #5072A7;
+    --colorMediumGrey: #b0b0b0;
+    --colorDarkGrey: #808080;
+    --colorLightBlack: #454545;
+    --colorLightGrey: #F1F1F1;
+    --colorPastelYellow: #ffee8c;
+    --fontLight: 'Light', Arial, Helvetica, sans-serif;
+    --fontMedium: 'Medium', Arial, Helvetica, sans-serif;
+    --fontRegular: 'Regular', Arial, Helvetica, sans-serif;
+    --fontMediumWeight: 500;
+    --maxWidth: 510px;
   }
   
 @font-face {
@@ -45,23 +46,23 @@
 }
 
 .MediumFont {
-  font-family: var(--FontMedium);
+  font-family: var(--fontMedium);
 }
   
 .RegularFont {
-  font-family: var(--FontRegular);
+  font-family: var(--fontRegular);
 }
   
  /* --- GENERAL --- */ 
 
 body {
   height: 100vh;
-  max-width: var(--MaxWidth);
+  max-width: var(--maxWidth);
   margin: 0 auto auto auto;
-  font-family: var(--FontMedium);
+  font-family: var(--fontMedium);
   font-size: 14px;
-  color: var(--ColorBlack);
-  background-color: var(--ColorPastelYellow);
+  color: var(--colorBlack);
+  background-color: var(--colorPastelYellow);
 }
 
 .Logo {
@@ -79,11 +80,11 @@ article {
 }
 
 p {
-  font-family: var(--FontLight);
+  font-family: var(--fontLight);
 }
   
 a {
-  color: var(--ColorBlack);
+  color: var(--colorBlack);
   text-decoration: none;
 }
 
@@ -95,25 +96,49 @@ h2 {
   margin-top: 0;
   font-size: 12px;
   font-weight: normal;
-  color: var(--ColorDarkGrey);
+  color: var(--colorDarkGrey);
   line-height: 1.1;
 }
 
 ::placeholder {
-  color: var(--ColorBlack);
-  font-family: var(--FontLight);
+  color: var(--colorBlack);
+  font-family: var(--fontLight);
   letter-spacing: 1px;
   opacity: 1;
 }
   
 ::-ms-input-placeholder { 
-  color: var(--ColorBlack);
-  font-family: var(--FontLight);
+  color: var(--colorBlack);
+  font-family: var(--fontLight);
   letter-spacing: 1px;
 }
 
 li {
   list-style-position: inside; 
+}
+
+label {
+  display: block;
+  padding-top: 15px;
+  padding-bottom: 5px;
+  animation: SlideDown 0.7s ease forwards;
+}
+
+.submit-button {
+  height: 40px;
+  width: 100%;
+  max-width: var(--maxWidth);
+  margin-top: 15px;
+  text-align: center;
+  color: var(--colorBlack);
+  border: none;
+  animation: SlideDown 0.7s ease forwards;;
+  background-color: var(--colorGrey);
+}
+
+.grey-round-border {
+  border: 1px solid var(--colorMediumGrey);
+  border-radius: 5px;
 }
 
 /* --- ANIMATIONS --- */
@@ -167,28 +192,38 @@ li {
 
 /* --- NAVIGATION --- */
 
+#icon-menu {
+  float: right;
+  height: 30px;
+  width: 30px;
+  padding: 10px;
+  cursor: pointer;
+}
+
 nav {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  max-width: var(--MaxWidth);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 300px;
+  width: 300px;
+  border: 2px solid var(--colorWhite);
+  border-radius: 50%;
+  display: none; /* Replace with flex when showing */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: #5DADE2;
+  filter: none !important;
   z-index: 1000;
 }
 
-.NavContainer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 30px;
-  width: 100%;
-  max-width: var(--MaxWidth);
-  background-color: var(--ColorBeige);
-  border-top: 1px solid var(--ColorLightGrey);
-}
-
-.NavBox {
-  width: 33%;
-  text-align: center;
+nav a {
+  display: block;
+  font-size: 28px;
+  color: white;
+  padding: 20px;
 }
 
 /* --- INFO --- */
@@ -199,8 +234,8 @@ nav {
 
 .InfoBox {
   margin-top: 20px;
-  background-color: var(--ColorBeige);
-  border: 1px solid var(--ColorMediumGrey);
+  background-color: var(--colorBeige);
+  border: 1px solid var(--colorMediumGrey);
   border-radius: 10px;
   animation: SlideUp 0.7s ease forwards;
 }
@@ -209,15 +244,14 @@ nav {
   font-family: 'Medium';
   font-size: 16px;
   line-height: 1.1;
-  margin-bottom: -15px;
+  margin-bottom: -10px;
   padding: 0 10px 0 10px;
   animation: SlideDown 0.7s ease forwards;
 }
 
 .InfoText {
-  padding-top: 0;
-  padding: 0 10px 0 10px;
-  padding: 10px;
+  font-size: 16px;
+  padding: 3px 20px 3px 20px;
 } 
 
 .InfoIcon {
@@ -229,13 +263,13 @@ nav {
 
 /* --- FOOD CATEGORY --- */
 
-.CategoryContainer {
+.category-container {
   height: 100%;
-  width: 100%;
+  width: calc(100% - 40px);
   padding: 10px 20px 20px 20px;
 }
 
-.CategoryParentTitle {
+.category-parent-title {
   font-family: 'Medium';
   font-size: 16px;
   padding-top: 20px;
@@ -243,7 +277,11 @@ nav {
   animation: SlideIn 0.7s ease forwards;
 }
 
-.CategoryTitle {
+.category-parent-title:first-of-type {
+  padding-top: 0;
+}
+
+.category-title {
   display: inline-block;
   height: 30px;
   width: auto;
@@ -251,31 +289,24 @@ nav {
   padding: 10px 20px 0px 20px;
   font-family: 'Regular';
   font-size: 14px;
-  background-color: var(--ColorBeige);
-  border: 1px solid var(--ColorMediumGrey);
+  background-color: var(--colorBeige);
+  border: 1px solid var(--colorMediumGrey);
   border-radius: 5px;
   animation: Rise 0.7s ease-in-out forwards;
 }
 
 /* --- FOOD ITEM TITLE --- */
 
-.ItemCategoryContainer {
-  display: flex;
-  justify-content: space-between;
-  padding: 0 15px 0 15px;
-  border-bottom: 0.5px solid var(--ColorGrey);
-}
-
-.ItemBackButton {
-  float: right;
+.item-back-button {
+  float: left;
   height: 30px;
   width: 30px;
-  padding-top: 15px;
+  padding: 10px 0 0 15px;
   transform: rotate(0deg);
   animation: Rotate 0.7s ease-in-out forwards;
 }
 
-.ItemCategoryTitle {
+.item-category-title {
   font-family: 'Medium';
   font-size: 16px;
   line-height: 1.1;
@@ -283,99 +314,100 @@ nav {
   animation: SlideDown 0.7s ease forwards;
 }
 
-#ItemTitlesContainer {
+#item-titles-container {
   height: calc(100% - 50px - 40px - 80px);
   width: 100%;
-  font-family: var(--FontLight);
-  background-color: var(--ColorBeige);
+  margin-top: 20px;
+  font-family: var(--fontLight);
+  background-color: var(--colorBeige);
   animation: Rise 0.7s ease-in-out forwards;
 }
 
-.ItemSelection {
+.item-selection {
   height: 16px;
-  border-bottom: 0.5px solid var(--ColorGrey);
+  border-bottom: 0.5px solid var(--colorGrey);
   padding: 10px;
   cursor: pointer;
 }
 
-.ItemIcon {
+.item-icon {
   float: left;
   height: 18px;
   width: 18px;
   padding-right: 6px;
 }
 
-.ItemName {
+.item-name {
   float: left;
   width: calc(100 - 30px);
 }
     
-.ItemCountServings {
+.item-count-servings {
   float: right;
   height: 16px;
   width: 16px;
   text-align: center;
   padding: 1px 1px 3px 1px;
   border-radius: 50%;
-  background-color: var(--ColorLightGrey);
+  background-color: var(--colorLightGrey);
 }
 
-#ItemContainer {
+#item-container {
   display: none;
 }
 
-#ItemContainerTop {
+#item-container-top {
   display: flex;
   height: 110px;
   width: 100%;
-  background-color: var(--ColorLightGrey);
+  background-color: var(--colorLightGrey);
   padding-bottom: 15px;
 }
 
 /* --- FOOD ITEM DETAIL --- */
     
-#ItemContainerBottom {
+#item-container-bottom {
   height: 190px;
   width: 100%;
-  background-color: var(--ColorLightGrey);
+  background-color: var(--colorLightGrey);
 }
     
-#ItemBoxFirst {
+#item-box-first {
   flex-grow: 0;
   width: 110px;
   padding-left: 20px;
   padding-right: 5px;
 }
     
-#ItemBoxSecond {
+#item-box-second {
   flex-grow: 0;
   width: 75px;
   text-align: right;
   padding-top: 21px;
 }
     
-#ItemBoxThird {
+#item-box-third {
   flex-grow: 1;
   text-align: left;
   padding-left: 30px;
 }
     
-#ItemBoxFirst p,
-#ItemBoxSecond p,
-#ItemBoxThird p {
+#item-box-first p,
+#item-box-second p,
+#item-box-third p {
   line-height: 0.5;
 }
     
 .ServingLink {
-  color: var(--ColorBlue);
+  color: var(--colorBlue);
   cursor: pointer;  
 }
     
 .ServingSelected {
-  color: var(--ColorBlack);
+  color: var(--colorBlack);
 }
 
-.SliderContainerLeft {
+.slider-container-left {
   float: left;
   height: 60px;
   width: 50px;
@@ -384,7 +416,7 @@ nav {
   padding-left: 20px;
 }
     
-.SliderContainerRight {
+.slider-container-right {
   float: right;
   height: 36px;
   width: calc(100% - 70px - 20px);
@@ -392,7 +424,7 @@ nav {
   padding-right: 20px;
 }
     
-.Slider {
+.slider {
   -webkit-appearance: none;
   height: 8px;
   width: 100%;
@@ -407,30 +439,30 @@ nav {
 }
 
 .NutritionalValuesTitle,
-.SliderTitle {
+.slider-title {
   font-size: 12px;
-  color: var(--ColorDarkGrey);
+  color: var(--colorDarkGrey);
 }
     
-.SliderValue {
+.slider-value {
    margin-top: 0px;
 }
     
-.Slider::-webkit-slider-thumb {
+.slider::-webkit-slider-thumb {
    -webkit-appearance: none;
   appearance: none;
   height: 16px;
   width: 16px;
   border-radius: 50%;
-  background: var(--ColorBlue);
+  background: var(--colorBlue);
   cursor: pointer;
 }
     
-.Slider::-moz-range-thumb {
+.slider::-moz-range-thumb {
   height: 16px;
   width: 16px;
   border-radius: 50%;
-  background: var(--ColorBlue);
+  background: var(--colorBlue);
   cursor: pointer;
 }
     
@@ -438,4 +470,20 @@ nav {
 .ItemSliderFactorContainer,
 .ItemSliderBolusContainer {
   text-align: center;
+}
+
+/* --- NAVIGATION --- */
+
+.contact-input {
+  height: 15px;
+  width: calc(100% - 20px);
+  padding: 10px;
+  animation: SlideUp 0.7s ease forwards;
+}
+
+.contact-textarea {
+  line-height: 1.5;
+  width: calc(100% - 20px);
+  padding: 10px;
+  animation: SlideUp 0.7s ease forwards;
 }
