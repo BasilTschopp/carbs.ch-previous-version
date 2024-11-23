@@ -6,8 +6,6 @@ $(document).ready(function() {
         var Size   = $('#slider-size').val();
         var Factor = $('#slider-factor').val();
 
-        console.log('Change Item ' + ItemID);
-
         CalcItem(ItemID, Size, Factor);
     });
 
@@ -66,7 +64,6 @@ function openItem(ItemID) {
   GetItemData(ItemID, function(ItemData) {
 
     var ItemCarbs = ItemData.Carbs;
-    var Servings  = ItemData.ServingIDs;
 
     $('#item-id').text(ItemID);
     $('#item-carbs').text(ItemCarbs);
@@ -74,32 +71,28 @@ function openItem(ItemID) {
 
     CalcItem(ItemID, 100, FactorValue);
 
-    if (Servings) {
+    $("#item-box-third").append("<p class='NutritionalValuesTitle'>Berechne</p>");
 
-      $("#item-box-third").append("<p class='NutritionalValuesTitle'>Berechne</p>");
+    GetServingData(ItemID, function(ServingData) {
 
-      GetServingData(ItemID, function(ServingData) {
+      var ServingID    = ServingData.ID;
+      var ServingTxtID = 'Serving' + ServingID;
+      var ServingName  = ServingData.ServingName;
+      var ServingSize  = ServingData.ServingSize;
 
-        var ServingID    = ServingData.ID;
-        var ServingTxtID = 'Serving' + ServingID;
-        var ServingName  = ServingData.ServingName;
-        var ServingSize  = ServingData.ServingSize;
+      var ServingLink  = "<p id='Serving" + ServingTxtID + "' class='ServingLink' ";
+      ServingLink     += "onclick='CalcItem(" + ItemID + "," + ServingSize + "," + FactorValue + ")';>";
+      ServingLink     += ServingName;
+      ServingLink     += "</p>";
 
-        var ServingLink  = "<p id='Serving" + ServingTxtID + "' class='ServingLink' ";
-        ServingLink     += "onclick='CalcItem(" + ItemID + "," + ServingSize + "," + FactorValue + ")';>";
-        ServingLink     += ServingName;
-        ServingLink     += "</p>";
+      $("#item-box-third").append(ServingLink);
 
-        $("#item-box-third").append(ServingLink);
-
-      });
-    }
+    });
+    
   });
 }
 
 function CalcItem(ItemID, Size, Factor) {
-
-  console.log('CalcItem ' + ItemID)
 
   GetItemData(ItemID, function(ItemData) {
 
@@ -150,6 +143,7 @@ function fetchData(Endpoint, ItemID, callback) {
 
 function GetItemData(ItemID, callback) {
   fetchData("/AjaxFoodItems", ItemID, callback);
+  console.log('Item data for item ' + ItemID);
 }
 
 function GetServingData(ItemID, callback) {
@@ -158,6 +152,7 @@ function GetServingData(ItemID, callback) {
       callback(ArrayServingData[i]);
     }
   });
+  console.log('Serving data for item ' + ItemID);
 }
 
 function UpdateLabel(ID, Value) {
