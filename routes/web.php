@@ -8,6 +8,7 @@ use App\Http\Controllers\ContactController;
 Route::get('/', [FoodController::class, 'getCategories']);
 Route::get('/info', [InfoController::class, 'info'])->name('info');
 Route::get('/Categories', [FoodController::class, 'getCategories'])->name('categories');
+Route::get('/Search', [FoodController::class, 'searchFood'])->name('search.food');
 Route::get('/Items', [FoodController::class, 'getItems'])->name('items');
 Route::get('/AjaxFoodItems', [FoodController::class, 'ajaxItems'])->name('ajax.items');
 Route::get('/AjaxFoodServings', [FoodController::class, 'ajaxServings'])->name('ajax.servings');;

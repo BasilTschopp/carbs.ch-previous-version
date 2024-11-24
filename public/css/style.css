@@ -55,6 +55,15 @@
   
  /* --- GENERAL --- */ 
 
+.fixed-header {
+  position: sticky;
+  top: 0;
+  height: 50px;
+  width: 100%;
+  background-color: var(--colorPastelYellow);
+  z-index: 1000;
+}
+
 body {
   height: 100vh;
   max-width: var(--maxWidth);
@@ -139,6 +148,13 @@ label {
 .grey-round-border {
   border: 1px solid var(--colorMediumGrey);
   border-radius: 5px;
+}
+
+.item-search-button {
+  float: left;
+  height: 30px;
+  width: 30px;
+  padding: 10px 0 0 30px;
 }
 
 /* --- ANIMATIONS --- */
@@ -266,7 +282,7 @@ nav a {
 .category-container {
   height: 100%;
   width: calc(100% - 40px);
-  padding: 10px 20px 20px 20px;
+  padding: 20px 20px 20px 20px;
 }
 
 .category-parent-title {
@@ -296,6 +312,23 @@ nav a {
 }
 
 /* --- FOOD ITEM TITLE --- */
+
+.input-search-food {
+  float: left;
+  height: 30px;
+  width: calc(100% - 120px);
+  margin: 7px 0px 0px 10px;
+  border: 1px solid var(--colorGrey);
+  background-image: url('https://carbs.ch/public/icons/search.svg');
+  background-position: 10px center; 
+  background-repeat: no-repeat; 
+  background-size: 16px 16px;
+  padding-left: 35px;
+}
+
+.input-search-food:focus {
+  outline: none;
+}
 
 .item-back-button {
   float: left;

@@ -37,7 +37,7 @@ function ClosePreviosItem() {
   if ($('#item-titles-container').find(".Open").length) {
     $('.item-selection').removeClass('Open');
     $('.item-selection').removeClass('MediumFont');
-    $('.item-selection .ItemIcon[src*="down.svg"]').attr('src', '../icons/right.svg');
+    $('.item-selection .item-icon[src*="down.svg"]').attr('src', '../icons/right.svg');
   } 
   $('#item-container').css("display", "none");
 }
@@ -56,7 +56,7 @@ function openItem(ItemID) {
   $(ItemContainer).insertAfter(SelectionID);
   $(SelectionID).addClass('MediumFont');
   $(SelectionID).addClass('Open');
-  $(SelectionID).find(".ItemIcon").attr("src", "../icons/down.svg");
+  $(SelectionID).find(".item-icon").attr("src", "../icons/down.svg");
 
   $(ItemContainer).css("display", "block");
   $('#slider-size').val(100);

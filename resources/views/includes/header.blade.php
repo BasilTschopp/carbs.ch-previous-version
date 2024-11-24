@@ -10,16 +10,34 @@
         <script src="{{ asset('js/jquery-3.7.1.min') }}"></script>
         <script src="{{ asset('js/nav.js') }}"></script>
         <script src="{{ asset('js/items.js') }}"></script>
+        <script src="{{ asset('js/search.js') }}"></script>
     </head>
 
-    @if (request()->is('*Items*'))
-    <a href="{{ url('Categories') }}">
-        <img src="{{ asset('icons/back.svg')}}" class='item-back-button' alt='Back'>
-    </a>
-    @endif
+    <div class='fixed-header'>
 
-    <div class='navigation-hamburger'>
-        <img src="{{ asset('icons/menu.svg') }}" id='icon-menu' alt='menu'>
+        {{-- Show the search icon only on the categories page --}}
+        @if (request()->is('*Categories*'))
+        <a href="{{ url('Search') }}">
+            <img src="{{ asset('icons/search.svg')}}" class='item-search-button' alt='Search'>
+        </a>
+        @endif
+
+        {{-- Show the search input only on the search page --}}
+        @if (request()->is('*Search*'))
+            <input type="text" id="search-food" class='input-search-food'>
+        @endif
+
+        {{-- Show the back button only on the item page --}}
+        @if (request()->is('*Items*'))
+        <a href="{{ url('Categories') }}">
+            <img src="{{ asset('icons/back.svg')}}" class='item-back-button' alt='Back'>
+        </a>
+        @endif
+
+        <div class='navigation-hamburger'>
+            <img src="{{ asset('icons/menu.svg') }}" id='icon-menu' alt='menu'>
+        </div>
+
     </div>
 
     <nav>     
@@ -27,5 +45,6 @@
         <a href="{{ route('categories') }}">LEBENSMITTEL</a>
         <a href="{{ route('contact') }}">KONTAKT</a>
     </nav>
+
 
     <article>

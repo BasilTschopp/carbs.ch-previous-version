@@ -9,6 +9,18 @@ use App\Models\FoodItems;
 
 class FoodController {
 
+    public function searchFood() {
+        
+        $Items = FoodItems::getItems();
+
+        foreach ($Items as $Item) {
+            $Item->ServingCount = FoodItems::getServingCount($Item->id);
+        }
+
+        return view('food/items', compact('Items'));
+
+    }
+
     public function getCategories() {
         $ParentCategories = FoodCategoriesParent::with('categories')->get();
         return view('food/categories', compact('ParentCategories'));

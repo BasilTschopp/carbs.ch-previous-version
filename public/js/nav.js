@@ -13,6 +13,8 @@ $(document).ready(function() {
     function openMenu() {
         $('.navigation-hamburger').css("filter", "blur(2px)");
         $('.item-back-button').css("filter", "blur(2px)");
+        $('.input-search-food').css("filter", "blur(2px)");
+        $('.item-search-button').css("filter", "blur(2px)");
         $('article').css("filter", "blur(2px)");
         $('nav').css({'display': 'flex'});
     }
@@ -20,6 +22,8 @@ $(document).ready(function() {
     function closeMenu() {
         $('.navigation-hamburger').css("filter", "none");
         $('.item-back-button').css("filter", "none");
+        $('.input-search-food').css("filter", "none");
+        $('.item-search-button').css("filter", "none")
         $('article').css("filter", "none");
         $('nav').css({'display': 'none'});
     }
