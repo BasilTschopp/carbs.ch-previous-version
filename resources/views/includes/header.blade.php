@@ -16,7 +16,7 @@
     <div class='fixed-header'>
 
         {{-- Show the search icon only on the categories page --}}
-        @if (request()->is('*Categories*'))
+        @if (request()->is('/') || request()->is('*Categories*'))
         <a href="{{ url('Search') }}">
             <img src="{{ asset('icons/search.svg')}}" class='item-search-button' alt='Search'>
         </a>
