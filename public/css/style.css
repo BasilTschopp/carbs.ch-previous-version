@@ -64,6 +64,18 @@
   z-index: 1000;
 }
 
+.fixed-footer {
+  position: sticky;
+  bottom: 0;
+  height: 25px;
+  width: 100%;
+  word-spacing: 30px;
+  padding-top: 10px;
+  background-color: var(--colorPastelYellow);
+  text-align: center;
+  z-index: 1000;
+}
+
 body {
   height: 100vh;
   max-width: var(--maxWidth);
@@ -244,11 +256,11 @@ nav a {
 
 /* --- INFO --- */
 
-#InfoContainer {
+#info-container {
   padding: 10px;
 }
 
-.InfoBox {
+.info-box {
   margin-top: 20px;
   background-color: var(--colorBeige);
   border: 1px solid var(--colorMediumGrey);
@@ -256,21 +268,21 @@ nav a {
   animation: SlideUp 0.7s ease forwards;
 }
 
-.InfoTitle {
+.info-title {
   font-family: 'Medium';
   font-size: 16px;
   line-height: 1.1;
   margin-bottom: -10px;
-  padding: 0 10px 0 10px;
+  padding: 10px 10px 0 10px;
   animation: SlideDown 0.7s ease forwards;
 }
 
-.InfoText {
-  font-size: 16px;
+.info-text {
+  font-size: 14px;
   padding: 3px 20px 3px 20px;
 } 
 
-.InfoIcon {
+.info-icon {
   float: right;
   height: 28px;
   width: 28px;
