@@ -17,6 +17,11 @@
         <p class='info-text'>{{ __('info_general.Exclusion') }}</p>
     </div>
 
+    <p class='info-title'>{{ __('imprint.TitlePrivacyPolicy') }}</p>
+    <div class='info-box'>
+        <p class='info-text'>{!! __('imprint.PrivacyPolicy') !!}</p>
+    </div>
+
 </div>
 
 @include('includes.footer')
