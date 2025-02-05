@@ -10,5 +10,5 @@ Laravel PHP Framework and the jQuery Library.
 #### Database
 The food data is stored as CSV files in the database/data folder and is automatically loaded into the database after the structure is created using the Laravel command php artisan migrate. It is also stored as an SQL file in the backup folder.
 
-#### License
-Laravel and jQuery are released under the MIT license, as is carbs.ch — so feel free! If the database is used, please note that a source attribution to the Swiss Federal Food Safety and Veterinary Office (BLV) is required.
+#### License and Source Attribution
+Laravel and jQuery are released under the MIT license, while carbs.ch is licensed under the GPL – so feel free! If the database is used, a source attribution to the Swiss Federal Food Safety and Veterinary Office (BLV) is required.
