@@ -62,7 +62,6 @@
     <nav>     
         <!-- Website Links -->
         <a href="{{ route('info') }}">INFO</a>
-        <a href="{{ route('login') }}">LOGIN</a>
         <a href="{{ route('categories') }}">LEBENSMITTEL</a>
         <a href="{{ route('contact') }}">KONTAKT</a>
     </nav>
